@@ -40,7 +40,7 @@ def main_plot(year = 2021, regions = regions_list):
     text = main_plot.mark_text(baseline="middle", dy = 12, fontSize = 10).encode(text="nom").transform_filter(alt.FieldGTPredicate(alt.datum.séances, gt = 1500))
     selection_line = main_plot.transform_filter(brush)
     
-    final_plot = alt.layer(mark_plot + text, regression_line)
+    final_plot = alt.layer(mark_plot + text, regression_line).configure_legend(title = '', orient='bottom')
 
     regression_params = alt_transform.extract_data(regression_line)
     initial_point = regression_params.iloc[0].to_list()
@@ -86,7 +86,7 @@ st.markdown("""
     padding-top: 10rem;
 }
 span[data-baseweb="tag"] {
-  background-color: blue !important;
+  background-color: gray !important;
 }
 .st-af {
     font-size:12px;
