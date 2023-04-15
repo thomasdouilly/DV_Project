@@ -8,7 +8,7 @@ st.set_page_config(page_title = 'French cinema analysis', page_icon="🎥", layo
 
 @st.cache_data
 def get_data():
-    df = pd.read_csv("./data.csv")
+    df = pd.read_csv("pages/data/data.csv")
     df = df[["unité urbaine", "fauteuils", "population unité urbaine", "pers/faut"]]
     df = df.sort_values('population unité urbaine').reset_index()
     df['index'] = df.reset_index().index
