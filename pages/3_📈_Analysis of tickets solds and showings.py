@@ -7,7 +7,7 @@ import streamlit as st
 
 import pandas as pd
 
-data = pd.read_excel('./data/data.xlsx', index_col = "N° auto", true_values = ['OUI'], false_values = ['NON'])
+data = pd.read_excel('./pages/data/data.xlsx', index_col = "N° auto", true_values = ['OUI'], false_values = ['NON'])
 
 data = data[['nom', 'région administrative', 'commune', 'unité urbaine', 'séances', 'entrées 2020', 'entrées 2021', 'multiplexe']]
 data['multiplexe'].replace(False, 'Miniplex', inplace = True)
@@ -48,7 +48,7 @@ def main_plot(year = 2021, regions = regions_list, type = ['Miniplex', 'Multiple
     return final_plot, ratio, ratio_france
 
 
-st.set_page_config(page_title = 'Cinema Analysis')
+st.set_page_config(page_title = 'French cinema analysis', page_icon="🎥")
 
 st.markdown("""
         <style>
