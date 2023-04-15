@@ -18,7 +18,7 @@ regions_list = data.groupby("région administrative").max().index.to_list()
 
 brush = alt.selection_interval()
 
-def main_plot(year = 2021, regions = regions_list):
+def main_plot(year = 2021, regions = regions_list, type = ['Miniplex', 'Multiplex']):
     
     if year == 2021:
         y_plot = 'entrées 2021'
@@ -32,7 +32,7 @@ def main_plot(year = 2021, regions = regions_list):
         x = alt.X('séances', scale = alt.Scale(domain = (0, 40000))),
         y = alt.Y(y_plot, scale = alt.Scale(domain = (0, 1500000))), 
         tooltip = ["nom", "région administrative"]
-    ).transform_filter(alt.FieldOneOfPredicate(field='région administrative', oneOf = regions)).add_selection()
+    ).transform_filter(alt.FieldOneOfPredicate(field='région administrative', oneOf = regions)).transform_filter(alt.FieldOneOfPredicate(field='multiplexe', oneOf = type)).add_selection()
     
     
     regression_line = main_plot.transform_regression('séances', y_plot, extent = (0, 40000)).encode(color = alt.value("#FF0000")).mark_line()
@@ -40,7 +40,7 @@ def main_plot(year = 2021, regions = regions_list):
     text = main_plot.mark_text(baseline="middle", dy = 12, fontSize = 10).encode(text="nom").transform_filter(alt.FieldGTPredicate(alt.datum.séances, gt = 1500))
     selection_line = main_plot.transform_filter(brush)
     
-    final_plot = alt.layer(mark_plot + text, regression_line).configure_legend(title = '', orient='bottom')
+    final_plot = alt.layer(mark_plot + text, regression_line).configure_legend(orient='bottom')
 
     regression_params = alt_transform.extract_data(regression_line)
     initial_point = regression_params.iloc[0].to_list()
@@ -63,14 +63,14 @@ st.markdown("""
 st.markdown("""
 <style>
 .begin-font {
-    font-size:14px;
+    font-size:20px;
 }
 .ratio-font {
-    font-size:20px !important;
+    font-size:32px !important;
     text-align: center;
 }
 .center-font {
-    font-size:14px;
+    font-size:20px;
     text-align: center;
 }
 .title {
@@ -108,19 +108,23 @@ with st.sidebar:
     cinema_type = st.multiselect("Category of cinemas :", ['Multiplex', 'Miniplex'], ['Multiplex', 'Miniplex'])
     regions = st.multiselect("Please select the French 'Régions' to be considered in the graph :", regions_list, regions_list)
 
-plot, ratio_selec, ratio_fr = main_plot(year, regions)
-plot = plot.add_selection(brush).properties(width=700, height=600)
+plot, ratio_selec, ratio_fr = main_plot(year, regions, cinema_type)
+plot = plot.add_selection(brush).properties(width=700, height=500)
 
-st.markdown('<p class = begin-font> In ' + str(year) + ', an average of :</p>', unsafe_allow_html=True)
+tab1, tab2 = st.tabs(["Summary", "Data"])
 
-col1, col2 = st.columns(2)
+with tab1:
+    st.markdown('<p class = begin-font> In ' + str(year) + ', an average of :</p>', unsafe_allow_html=True)
 
-col1.markdown("<p class = ratio-font><b>" + str(round(ratio_selec, 1)) + "</b></p>", unsafe_allow_html=True)
-col1.markdown('<p class = center-font>tickets were sold for each<br>showing<br>*** SELECTION ONLY ***</p>', unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+
+    col1.markdown("<p class = ratio-font><b>" + str(round(ratio_selec, 1)) + "</b></p>", unsafe_allow_html=True)
+    col1.markdown('<p class = center-font>tickets were sold for each<br>showing<br>*** SELECTION ONLY ***</p>', unsafe_allow_html=True)
 
 
-col2.markdown("<p class = ratio-font><b>" + str(round(ratio_fr, 1)) + "</b></p>", unsafe_allow_html=True)
-col2.markdown('<p class = center-font>tickets were sold for each<br>showing<br>*** WHOLE FRANCE ***</p>', unsafe_allow_html=True)
+    col2.markdown("<p class = ratio-font><b>" + str(round(ratio_fr, 1)) + "</b></p>", unsafe_allow_html=True)
+    col2.markdown('<p class = center-font>tickets were sold for each<br>showing<br>*** WHOLE FRANCE ***</p>', unsafe_allow_html=True)
 
-st.altair_chart(plot)
+with tab2:
+    st.altair_chart(plot)
 
