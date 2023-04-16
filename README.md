@@ -15,5 +15,5 @@ Here are the questions that we focused on regarding this dataset:
 
 ## Useful links
 - the visualization app (https://thomasdouilly-dv-project-homepage-ba0k1c.streamlit.app/).
-- the demo video ().
+- the demo video (https://www.youtube.com/watch?v=IBnSYC5NSJE).
 - our professor's website about the course (https://tobias.isenberg.cc/visualization/). Don't hesitate to have a look, you have more to learn than you can imagine!
