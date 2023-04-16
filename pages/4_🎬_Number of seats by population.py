@@ -55,11 +55,13 @@ chart_area = chart_area.properties(title='Evolution of population and number of 
 mean_value = int(df['Number of persons per seats'].mean())
 # add mean line and label
 mean_line = alt.Chart(pd.DataFrame({'mean_value': [mean_value]})).mark_rule(color='black').encode(
-    y=alt.Y('mean_value:Q', axis=alt.Axis(title='Number of persons per seats', titleColor='green'))
+    y=alt.Y('mean_value:Q', axis=alt.Axis(title='Number of persons per seats', titleColor='green'),
+    color = alt.value('lightblue'))
 )
 mean_label = alt.Chart(pd.DataFrame({'mean_value': [mean_value]})).mark_text(color='black', dx=-517, dy=0, align='left').encode(
     y=alt.Y('mean_value:Q'),
-    text=alt.Text('mean_value:Q')
+    text=alt.Text('mean_value:Q'),
+    color = alt.value('lightblue')
 )
 bars = alt.Chart(df).mark_bar(color='green').encode(
     x=alt.X('Area:N', 

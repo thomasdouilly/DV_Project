@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 st.set_page_config(page_title="French cinema analysis", page_icon="🎥", layout="wide")
-st.title("Dashboard - Films' nationalities")
+st.title("Films' nationality")
 
 raw_data = pd.read_excel("pages/data/data.xlsx")
 paris_arrondissement = raw_data[raw_data['code INSEE'].str.contains('^751', regex=True)].groupby('code INSEE').mean()
