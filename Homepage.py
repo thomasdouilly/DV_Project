@@ -6,7 +6,7 @@ st.set_page_config(
 )
 
 st.write("# Welcome to our final Data Vizualisation Assignment! 👋")
-
+st.write('Powered by les 4 Fantastiques')
 st.sidebar.success("Select a dashboard above.")
 
 st.markdown("""
