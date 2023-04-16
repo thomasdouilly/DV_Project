@@ -6,7 +6,7 @@ st.set_page_config(
 )
 
 st.write("# Welcome to our final Data Vizualisation Assignment! 👋")
-st.write("This website has been created by the Team 'Les 4 Fantastiques' formed by Ugo DEMY, Martin PONCHON, Antoine DARGIER and Thomas DOUILLY")
+st.write("This website has been created by the Team 'Les 4 Fantastiques' formed by Ugo DEMY, Martin PONCHON, Antoine DARGIER and Thomas DOUILLY.")
 st.sidebar.success("Select a dashboard above.")
 
 st.markdown("""
