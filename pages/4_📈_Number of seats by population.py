@@ -2,7 +2,6 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-
 st.set_page_config(page_title = 'French cinema analysis', page_icon="🎥", layout="wide")
 
 
@@ -66,8 +65,10 @@ bars = alt.Chart(df).mark_bar(color='green').encode(
     x=alt.X('Area:N', 
             axis=alt.Axis(title='Names of urban areas'),
             sort=None),
-    y='Number of persons per seats:Q'
+    y='Number of persons per seats:Q', 
+    color = alt.condition(click, alt.value('green'), alt.value('lightgray'))
 )
+
 chart_bars = bars + mean_line + mean_label
 chart_bars = chart_bars.properties(title='Number of persons by cinemas seats in urban areas')
 chart_bars = chart_bars.encode(tooltip=['Area:N', 'Population:Q', 'Seats:Q', alt.Tooltip('Number of persons per seats:Q', format='.1f')])

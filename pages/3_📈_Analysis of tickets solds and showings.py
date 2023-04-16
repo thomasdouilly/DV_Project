@@ -7,7 +7,6 @@ import streamlit as st
 
 import pandas as pd
 
-
 # Data importation
 data = pd.read_excel('./pages/data/data.xlsx', index_col = "N° auto", true_values = ['OUI'], false_values = ['NON'])
 
