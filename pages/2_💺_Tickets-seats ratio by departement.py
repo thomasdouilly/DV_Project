@@ -9,7 +9,7 @@ import numpy as np
 
 st.set_page_config(page_title="French cinema analysis", page_icon="🎥", layout="wide")
 
-st.title("Number of tickets sold per seat")
+st.title("Tickets sold per seat by department in France, 2021")
 
 
 @st.cache_data
