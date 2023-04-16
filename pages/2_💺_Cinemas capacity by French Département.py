@@ -39,7 +39,7 @@ fig = px.choropleth_mapbox(eu_df, geojson=eu_df.geometry, locations=eu_df.index,
                         center={'lat': 46.5, 'lon': 2},
                         mapbox_style='white-bg',
                         range_color=(25, 110),
-                        zoom=4.3,
+                        zoom=4,
                         opacity=0.1,
                         hover_name='ADMIN') #.update(layout_showlegend=False)
 
@@ -47,7 +47,7 @@ fig2 = px.choropleth_mapbox(map_df, geojson=map_df.geometry, locations=map_df.in
                         color_continuous_scale="Viridis",
                         range_color=(25, 110),
                         mapbox_style='white-bg',
-                        zoom=4.3,
+                        zoom=4,
                         center={'lat': 46.5, 'lon': 2},
                         labels={'value':'Number'},
                         #hover_data={'code':False},
@@ -55,7 +55,7 @@ fig2 = px.choropleth_mapbox(map_df, geojson=map_df.geometry, locations=map_df.in
                         opacity=1)
 
 fig.add_trace(fig2.data[0])
-fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, coloraxis_colorbar=dict(title="N", orientation='h', y=1.01, len=1.1))
 fig.update_geos(fitbounds="locations", visible=True)
 
 st.plotly_chart(fig, use_container_width=True)
