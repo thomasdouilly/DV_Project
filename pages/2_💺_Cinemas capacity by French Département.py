@@ -16,9 +16,10 @@ def get_data():
     geo_df = geopandas.read_file('pages/data/departements_martin.geojson')
     df = geo_df.merge(value_df, on='code', how='left').set_index('code')
 
-    countries_df = geopandas.read_file("pages/data/countries.geojson")
-    countries = ["France", "Spain", "Belgium", "Italy", "Luxembourg", "Switzerland", "Germany", "Portugal", "Austria", "Netherlands", "Croatia", 'Czech Republic', "Slovenia", 'Andorra','Liechtenstein', 'United Kingdom', "Hungary", "Poland", "Slovakia", 'Bosnia and Herzegovina', "Montenegro", 'Republic of Serbia']
-    eu_df = countries_df[countries_df.ADMIN.isin(countries)] #.set_index("ADMIN")
+    #countries_df = geopandas.read_file("pages/data/eu_countries.geojson")
+    #countries = ["France", "Spain", "Belgium", "Italy", "Luxembourg", "Switzerland", "Germany", "Portugal", "Austria", "Netherlands", "Croatia", 'Czech Republic', "Slovenia", 'Andorra','Liechtenstein', 'United Kingdom', "Hungary", "Poland", "Slovakia", 'Bosnia and Herzegovina', "Montenegro", 'Republic of Serbia']
+    #eu_df = countries_df[countries_df.ADMIN.isin(countries)] #.set_index("ADMIN")
+    eu_df = geopandas.read_file("pages/data/eu_countries.geojson")
     return df, eu_df
 
 st.title("Dashboard")
