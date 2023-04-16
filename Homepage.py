@@ -5,7 +5,7 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.write("# Welcome to our final Data Vizualisation Assignment! 👋")
+st.write("# Welcome to our final Data Visualization Assignment! 👋")
 st.write("This website has been created by the Team 'Les 4 Fantastiques' formed by Ugo DEMY, Martin PONCHON, Antoine DARGIER and Thomas DOUILLY.")
 st.sidebar.success("Select a dashboard above.")
 
