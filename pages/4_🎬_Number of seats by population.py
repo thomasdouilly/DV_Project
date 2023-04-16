@@ -94,7 +94,7 @@ chart_bars = chart_bars.add_selection(
 # Combine charts using VConcatChart
 chart = alt.vconcat(chart_area, chart_bars, spacing=10)
 # Apply chart configuration to the concatenated chart object
-chart = chart.configure_view(width=850, height=200)
+chart = chart.configure_view(width=825, height=200)
 
 chart = chart.configure_title(anchor='middle')
 chart = chart.configure_mark(opacity=0.8)
