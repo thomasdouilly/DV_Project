@@ -27,7 +27,7 @@ def get_data():
 df, eu_df = get_data()
 
 # Slider to select the range of values to display
-values = st.slider("Select value range:", min_value=0, value=(0, 150), max_value=150)
+values = st.slider("Select range of values to be displayed on the chart below:", min_value=0, value=(0, 150), max_value=150)
 min_val, max_val = values
 map_df = df.loc[(df.value >= min_val) & (df.value <= max_val)]
 
